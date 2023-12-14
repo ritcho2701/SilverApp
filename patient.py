@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_option('deprecation.showfileUploaderEncoding', False)
 import pandas as pd
 import mysql.connector
 import joblib
@@ -52,6 +53,8 @@ def establish_mysql_connection():
             password='User@2701',
             database='silverapp'
         )
+        print("Database Connection Information:", conn)
+
         return conn
     except mysql.connector.Error as err:
         print("MySQL Connection Error:", err)
