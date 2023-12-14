@@ -41,7 +41,10 @@ def doctor_app():
             password='User@2701',
             database='silverapp'
         )
-        st.write("Database Connection Information:", conn)
+        # Display success message
+        st.success("Database Connection Established")
+
+        return conn
 
         return conn
     except mysql.connector.Error as err:
