@@ -17,7 +17,7 @@ def establish_mysql_connection():
         )
 
         # Display success message
-        st.success("Database Connection Established")
+        st.title("Database Connection Established")
 
         return conn
     except mysql.connector.Error as err:
