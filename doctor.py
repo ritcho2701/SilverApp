@@ -33,7 +33,20 @@ def establish_mysql_connection():
 def doctor_app():
     # Your implementation here
     st.title("Hello world")
-    pass
+    try:
+        # Establish MySQL connection
+        conn = mysql.connector.connect(
+            host='silverapp.mysql.database.azure.com',
+            user='rushi2701',
+            password='User@2701',
+            database='silverapp'
+        )
+        st.write("Database Connection Information:", conn)
+
+        return conn
+    except mysql.connector.Error as err:
+        print("MySQL Connection Error:", err)
+        return None
 
 # Call the connection function only when needed
 if __name__ == "__main__":
