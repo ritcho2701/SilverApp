@@ -30,3 +30,7 @@ def establish_mysql_connection():
     except mysql.connector.Error as err:
         print("MySQL Connection Error:", err)
         return None
+# In patient.py
+def doctor_app():
+    # Your implementation here
+    pass
