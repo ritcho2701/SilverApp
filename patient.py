@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_option('browser.gatherUsageStats', False)
 import pandas as pd
 import mysql.connector
 import joblib
@@ -8,7 +9,7 @@ from datetime import datetime
 import numpy as np
 # Global variable for the database connection
 conn = None
-
+st.set_config({'logger.level': 'error'})
 def establish_mysql_connection():
     global conn  # Add this line to indicate you're using the global variable
 
