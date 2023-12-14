@@ -29,6 +29,15 @@ def establish_mysql_connection():
 def doctor_app():
     # Your implementation here
     st.title("Hello world")
+    conn = mysql.connector.connect(
+            host='silverapp.mysql.database.azure.com',
+            user='rushi2701',
+            password='User@2701',
+            database='silverapp'
+        )
+
+        # Display success message
+    st.title("Database Connection Established")
 
 # Call the connection function only when needed
 if __name__ == "__main__":
