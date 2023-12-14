@@ -41,6 +41,9 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+# Global variable for the database connection
+conn = None
+
 def establish_mysql_connection():
     global conn  # Add this line to indicate you're using the global variable
 
@@ -50,46 +53,51 @@ def establish_mysql_connection():
             host='silverapp.mysql.database.azure.com',
             user='rushi2701',
             password='User@2701',
-            database='silverline_database'
+            database='silverline_database',
+            ssl_ca=r'C:/Users/rrpat/OneDrive/Desktop/hackthon SilverLine Phase1/DigiCertGlobalRootCA.crt.pem'
+            # Add SSL certificate path
         )
-        st.write("Database Connection Information:", conn)
 
+        st.write("Database Connection Information:", conn)
         return conn
     except mysql.connector.Error as err:
-        print("MySQL Connection Error:", err)
+        st.error("MySQL Connection Error: " + str(err))
         return None
-
 
 # Function to establish a MySQL database connection and fetch patient information
 def load_patient_info(volunteer_id):
-    global conn 
+    global conn  # Make sure to use the global variable
+
     try:
-        conn = establish_mysql_connection()
-        
-        if conn is not None:
-            cursor = conn.cursor()
-            # Define the SQL query to retrieve patient information based on volunteer ID
-            query = f"""
-                SELECT vp.ID, vp.first_name, vp.last_name, vp.gender, vp.age, vp.location, vp.contact_number, vp.mail_id, vp.conditions, vp.vaccine_type, vp.created_at,
-                    vf.Oxygen, vf.PulseRate, vf.Temperature, vf.Diabities, vf.bp_systolic, vf.bp_diastolic
-                FROM volunteer_personal_data vp
-                JOIN volunteer_fitness_data vf ON vp.ID = vf.ID
-                WHERE vp.ID = '{volunteer_id}';
-                """
-            # Execute the query
-            cursor.execute(query)
+        # Check if the connection is already established, otherwise establish it
+        if conn is None or not conn.is_connected():
+            conn = establish_mysql_connection()
 
-            # Fetch the patient information
-            patient_info = cursor.fetchone()
+        # Create a cursor object to execute SQL queries
+        cursor = conn.cursor()
 
-            return patient_info
-        
+        # Define the SQL query to retrieve patient information based on volunteer ID
+        query = f"""
+            SELECT vp.ID, vp.first_name, vp.last_name, vp.gender, vp.age, vp.location, vp.contact_number, vp.mail_id, vp.conditions, vp.vaccine_type, vp.created_at,
+                vf.Oxygen, vf.PulseRate, vf.Temperature, vf.Diabities, vf.bp_systolic, vf.bp_diastolic
+            FROM volunteer_personal_data vp
+            JOIN volunteer_fitness_data vf ON vp.ID = vf.ID
+            WHERE vp.ID = '{volunteer_id}';
+        """
 
+        # Execute the query
+        cursor.execute(query)
+
+        # Fetch the patient information
+        patient_info = cursor.fetchone()
+
+        return patient_info
     except mysql.connector.Error as err:
-        print("MySQL Connection Error:", err)
+        st.error("MySQL Query Execution Error: " + str(err))
         return None
-
-    
+    finally:
+        # Close the cursor (not closing the connection to reuse it)
+        cursor.close()  
 def validate_unique_id(unique_id):
     conn = establish_mysql_connection()
     if conn:
