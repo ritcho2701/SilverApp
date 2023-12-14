@@ -1,4 +1,6 @@
 import streamlit as st
+st.set_option('browser.gatherUsageStats', False)
+
 st.set_option('deprecation.showfileUploaderEncoding', False)
 import pandas as pd
 import mysql.connector
@@ -53,7 +55,7 @@ def establish_mysql_connection():
             password='User@2701',
             database='silverapp'
         )
-        print("Database Connection Information:", conn)
+        st.write("Database Connection Information:", conn)
 
         return conn
     except mysql.connector.Error as err:
