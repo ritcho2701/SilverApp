@@ -6,8 +6,10 @@ import os
 import random
 from datetime import datetime
 import numpy as np
+
 # Global variable for the database connection
 conn = None
+
 def establish_mysql_connection():
     global conn  # Add this line to indicate you're using the global variable
 
@@ -25,10 +27,12 @@ def establish_mysql_connection():
     except mysql.connector.Error as err:
         print("MySQL Connection Error:", err)
         return None
+
 # In patient.py
 def patient_app():
     # Your implementation here
     pass
 
+# Call the connection function only when needed
 if __name__ == "__main__":
     establish_mysql_connection()
