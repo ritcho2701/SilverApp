@@ -1,7 +1,4 @@
 import streamlit as st
-st.set_option('browser.gatherUsageStats', False)
-
-st.set_option('deprecation.showfileUploaderEncoding', False)
 import pandas as pd
 import mysql.connector
 import joblib

@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_option('deprecation.showfileUploaderEncoding', False)
+
 from patient import patient_app
 from doctor import doctor_app
 
