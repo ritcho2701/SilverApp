@@ -29,12 +29,7 @@ def establish_mysql_connection():
 def doctor_app():
     # Your implementation here
     st.title("Hello world")
-    conn = mysql.connector.connect(
-            host='silverapp.mysql.database.azure.com',
-            user='rushi2701',
-            password='User@2701',
-            database='silverapp'
-        )
+    conn =mysql.connector.connect(user="rushi2701", password="User@2701", host="silverapp.mysql.database.azure.com", port=3306, database="silverapp", ssl_ca="{ca-cert filename}", ssl_disabled=False)
 
         # Display success message
     st.title("Database Connection Established")
