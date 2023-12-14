@@ -47,10 +47,10 @@ def establish_mysql_connection():
     try:
         # Establish MySQL connection
         conn = mysql.connector.connect(
-            host='127.0.0.1',
-            user='root',
-            password='Ritcho@2701',
-            database='SilverLine_database'
+            host='silverapp.mysql.database.azure.com',
+            user='rushi2701',
+            password='User@2701',
+            database='silverapp'
         )
         return conn
     except mysql.connector.Error as err:
