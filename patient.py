@@ -1,5 +1,4 @@
 import streamlit as st
-st.set_option('browser.gatherUsageStats', False)
 import pandas as pd
 import mysql.connector
 import joblib
@@ -32,3 +31,5 @@ def patient_app():
     # Your implementation here
     pass
 
+if __name__ == "__main__":
+    establish_mysql_connection()
