@@ -12,7 +12,7 @@ conn = None
 
 
 st.title("Hello world")
-st.set_config({'logger.level': 'error'})
+
 def establish_mysql_connection():
     global conn  # Add this line to indicate you're using the global variable
 
@@ -36,4 +36,7 @@ def establish_mysql_connection():
 # In patient.py
 def doctor_app():
     # Your implementation here
+    st.title("Hello world")
     pass
+if __name__ == "__main__":
+    establish_mysql_connection()
