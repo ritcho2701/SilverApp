@@ -10,7 +10,7 @@ from datetime import datetime
 conn = None
 
 
-
+st.title("Hello world")
 def establish_mysql_connection():
     global conn  # Add this line to indicate you're using the global variable
 
@@ -30,6 +30,7 @@ def establish_mysql_connection():
     except mysql.connector.Error as err:
         print("MySQL Connection Error:", err)
         return None
+    
 # In patient.py
 def doctor_app():
     # Your implementation here
