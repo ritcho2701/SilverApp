@@ -31,8 +31,10 @@ def establish_mysql_connection():
 # In patient.py
 def patient_app():
     # Your implementation here
+    
     pass
 
 # Call the connection function only when needed
 if __name__ == "__main__":
     establish_mysql_connection()
+    patient_app()

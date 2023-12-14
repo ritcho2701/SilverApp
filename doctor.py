@@ -10,7 +10,6 @@ from datetime import datetime
 # Global variable for the database connection
 conn = None
 
-st.title("Hello world")
 
 def establish_mysql_connection():
     global conn  # Add this line to indicate you're using the global variable
@@ -39,3 +38,4 @@ def doctor_app():
 # Call the connection function only when needed
 if __name__ == "__main__":
     establish_mysql_connection()
+    doctor_app()
