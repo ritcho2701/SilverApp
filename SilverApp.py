@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_option('deprecation.showfileUploaderEncoding', False)
 from patient import patient_app
 from doctor import doctor_app
 
@@ -39,7 +40,6 @@ app_pages = {
 if 'page' not in st.session_state:
     st.session_state.page = 'Home'
 
-
 # Get the index of the current page
 current_page_index = list(app_pages.keys()).index(st.session_state.page)
 
@@ -58,15 +58,14 @@ if new_page != st.session_state.page:
 page = app_pages[st.session_state.page]
 if page is not None:
     page()
+
 # Add introduction to the Home page
 if st.session_state.page == 'Home':
     st.markdown(
-                """
-                <div style="border: 1px solid #CCCCCC; padding: 10px; margin-bottom: 10px;">
-                    <h4>Welcome to the Home Page </h4>
-                    
-                </div>
-                """,
-                unsafe_allow_html=True
-        )
-   
+        """
+        <div style="border: 1px solid #CCCCCC; padding: 10px; margin-bottom: 10px;">
+            <h4>Welcome to the Home Page </h4>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
