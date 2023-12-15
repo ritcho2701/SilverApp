@@ -50,7 +50,7 @@ def establish_mysql_connection():
             host='silverapp.mysql.database.azure.com',
             user='rushi2701',
             password='User@2701',
-            database='silverapp'
+            database='silverline_database'
         )
         st.write("Database Connection Information:", conn)
 
